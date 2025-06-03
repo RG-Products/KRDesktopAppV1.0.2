@@ -1,0 +1,38 @@
+appId: com.guasam.era
+productName: KRhythm Sensing
+
+directories:
+  buildResources: resources/build
+compression: maximum
+files:
+  - '!**/.vscode/*'
+  - '!src/*'
+  - '!electron.vite.config.{js,ts,mjs,cjs}'
+  - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
+  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+
+asar: true
+asarUnpack:
+  - resources/**
+
+win:
+  target:
+    - nsis
+  executableName: KRhythm Sensing
+
+nsis:
+  artifactName: ${name}-${version}-setup.${ext}
+  shortcutName: ${productName}
+  uninstallDisplayName: ${productName}
+  createDesktopShortcut: always
+  
+  deleteAppDataOnUninstall: true
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+
+npmRebuild: false
+
+publish:
+  provider: generic
+  url: https://example.com/auto-updates
